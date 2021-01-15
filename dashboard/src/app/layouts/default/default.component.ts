@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-default',
@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultComponent implements OnInit {
 
+  sidebarOpen:Boolean = false;
+  @ViewChild('drawer', { read: ViewContainerRef }) target:any;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
+    console.log(this.target.nativeElement);
+  }
+
+  sideBarToggle() {
+    console.log(this.target);
+    this.sidebarOpen = !this.sidebarOpen;
   }
 
 }
